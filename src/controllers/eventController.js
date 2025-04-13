@@ -163,7 +163,7 @@ const getAllEventsIncludingPast = async (req, res) => {
     }
 
     const events = await Event.find({ showPastEvents: true })
-      .populate('creator', 'name');
+      .populate('organizer', 'name');
 
     res.status(200).json(
       responseFormatter(
@@ -182,9 +182,9 @@ const getAllEventsIncludingPast = async (req, res) => {
 const getArchivedEvents = async (req, res) => {
   try {
     const events = await Event.find({
-      creator: req.userId,
+      organizer: req.userId,
       date: { $lt: new Date() }
-    }).populate('creator', 'name');
+    }).populate('organizer', 'name');
 
     res.status(200).json(
       responseFormatter(

@@ -91,7 +91,7 @@ const getTicketById = async (req, res) => {
     const ticket = await Ticket.findById(req.params.id)
       .populate({
         path: 'event',
-        select: 'title description date time location ticketPrice category imageUrl creator'
+        select: 'title description date time location ticketPrice category imageUrl organizer'
       })
 
     if (!ticket) {
